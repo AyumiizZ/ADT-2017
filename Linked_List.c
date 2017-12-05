@@ -18,31 +18,31 @@ void FreeNode(TYPE_NODEPTR N)
 {
     free(N);
 }
-void InsertFirst(TYPE_NODEPTR *L, TYPE_NODEPTR N)
+void InsertFirst(TYPE_NODEPTR List, TYPE_NODEPTR New)
 {
-    N->Next = *L;
-    *L = N;
+    New->Next = List;
+    List = New;
 }
-void InsertAfter(TYPE_NODEPTR P, TYPE_NODEPTR N)
+void InsertAfter(TYPE_NODEPTR Point, TYPE_NODEPTR New)
 {
-    N->Next = P->Next;
-    P->Next = N;
+    New->Next = Point->Next;
+    Point->Next = New;
 }
-void InsertLast(TYPE_NODEPTR P, TYPE_NODEPTR N)
+void InsertLast(TYPE_NODEPTR Point, TYPE_NODEPTR New)
 {
-    if (P->Next != NULL)
+    if (Point->Next != NULL)
     {
-        while (P->Next != NULL)
+        while (Point->Next != NULL)
         {
-            P = P->Next;
+            Point = Point->Next;
         }
-        P->Next = N;
+        Point->Next = New;
     }
     else
     {
-        P->Next = N;
+        Point->Next = New;
     }
-    N->Next = NULL;
+    New->Next = NULL;
 }
 int main()
 {
