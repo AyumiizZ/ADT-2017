@@ -43,7 +43,7 @@ TYPE_NODEPTR DeleteLast(TYPE_NODEPTR List)
             Current = Current->Next;
         }
     }
-    if(Prior, Current)
+    if (Prior, Current)
     {
         return DeleteFirst(List);
     }
@@ -78,6 +78,38 @@ void InsertLast(TYPE_NODEPTR Point, TYPE_NODEPTR New)
         Point->Next = New;
     }
     New->Next = NULL;
+}
+void Traverse(TYPE_NODEPTR List)
+{
+    TYPE_NODEPTR Point;
+    Point = List;
+    while (Point != NULL)
+    {
+        ProcessInfor(Point->Info);
+        Point = Point->Next;
+    }
+}
+void PrintInfo(TYPE_NODEPTR List)
+{
+    TYPE_NODEPTR Point;
+    int Counter;
+    Counter = 0;
+    Point = List;
+    while (Point != NULL)
+    {
+        Counter++;
+        printf("Your Data : %d\n", Point->Info);
+        Point = Point->Next;
+    }
+    printf("Total node : %d\n", Counter);
+}
+TYPE_NODEPTR SearchInfo(TYPE_NODEPTR List, char Item)
+{
+    TYPE_NODEPTR Point;
+    Point = List;
+    while ((Point != NULL) && (Point->Info != Item))
+        Point = Point->Next;
+    return Point;
 }
 int main()
 {
