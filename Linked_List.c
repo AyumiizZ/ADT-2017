@@ -18,6 +18,32 @@ void FreeNode(TYPE_NODEPTR N)
 {
     free(N);
 }
+void InsertFirst(TYPE_NODEPTR *L, TYPE_NODEPTR N)
+{
+    N->Next = *L;
+    *L = N;
+}
+void InsertAfter(TYPE_NODEPTR P, TYPE_NODEPTR N)
+{
+    N->Next = P->Next;
+    P->Next = N;
+}
+void InsertLast(TYPE_NODEPTR P, TYPE_NODEPTR N)
+{
+    if (P->Next != NULL)
+    {
+        while (P->Next != NULL)
+        {
+            P = P->Next;
+        }
+        P->Next = N;
+    }
+    else
+    {
+        P->Next = N;
+    }
+    N->Next = NULL;
+}
 int main()
 {
     printf("Hello World");
