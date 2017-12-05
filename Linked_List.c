@@ -8,11 +8,46 @@ typedef struct Node
 typedef struct Node *TYPE_NODEPTR;
 TYPE_NODEPTR NewNode(char Item)
 {
-    TYPE_NODEPTR N;
-    N = (TYPE_NODEPTR)malloc(sizeof(TYPE_NODE));
-    N->Info = Item;
-    N->Next = NULL;
-    return N;
+    TYPE_NODEPTR New;
+    New = (TYPE_NODEPTR)malloc(sizeof(TYPE_NODE));
+    New->Info = Item;
+    New->Next = NULL;
+    return New;
+}
+TYPE_NODEPTR DeleteFirst(TYPE_NODEPTR List)
+{
+    TYPE_NODEPTR Point;
+    Point = List;
+    List = List->Next;
+    Point->Next = NULL;
+    return Point;
+}
+TYPE_NODEPTR DeleteAfter(TYPE_NODEPTR Point)
+{
+    TYPE_NODEPTR Point2;
+    Point2 = Point->Next;
+    Point->Next = Point2->Next;
+    Point2->Next = NULL;
+    return Point2;
+}
+TYPE_NODEPTR DeleteLast(TYPE_NODEPTR List)
+{
+    TYPE_NODEPTR Prior, Current;
+    if (List->Next != NULL)
+    {
+        Prior = List;
+        Current = List;
+        while (Current->Next != NULL)
+        {
+            Prior = Current;
+            Current = Current->Next;
+        }
+    }
+    if(Prior, Current)
+    {
+        return DeleteFirst(List);
+    }
+    return DeleteAfter(Prior);
 }
 void FreeNode(TYPE_NODEPTR N)
 {
